@@ -1,0 +1,24 @@
+ 
+# Use root/example as user/password credentials
+version: '3.9'
+networks:
+  curso-microservicios:
+    external: true
+    driver: bridge
+services:
+  postgres:
+    #image: postgres:14-alpine
+    image: postgres:16-alpine
+    ports:
+      - 5432:5432
+    container_name: postgres14
+    networks:
+      - curso-microservicios  # Connectarse a la red curso-microservicios
+    volumes:
+      #- ~/apps/postgres:/var/lib/postgresql/data
+      - ~/apps/postgres16:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_USER=root
+      - POSTGRES_DB=db_springboot_cloud
+#pgadmin Master password=> postgres
